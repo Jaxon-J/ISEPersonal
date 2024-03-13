@@ -1,0 +1,111 @@
+<html>
+<head>
+<style>
+body {
+    background-color: #277714; 
+    margin: 0; 
+    padding: 0; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px; 
+    position: relative; 
+}
+
+nav {
+    line-height:30px;
+    height:300px;
+    width:100px;
+    float:left;
+    padding:5px;        
+}
+section {
+    width:100%; /* Set section width to 100% */
+    padding: 20px 0; /* Add vertical padding */
+    text-align: center; /* Center-align content */
+}
+section form {
+    display: inline-block; /* Make form inline-block to center horizontally */
+    max-width: 400px; /* Set max-width of form */
+    width: 80%; /* Set width of form */
+}
+section form label {
+    font-weight: bold; /* Make the label text bold */
+    font-size: 24px; /* Make the label text larger */
+    color: red; /* Change text color to red */
+}
+section form input[type="text"] {
+    width: 100%; /* Set width of input to 100% */
+    padding: 10px; /* Add padding to input */
+    box-sizing: border-box; /* Include padding in width calculation */
+    background-color: #277714; /* Match input background color to body */
+    border: 1px solid yellow; /* Add yellow border */
+    color: white; /* Set text color to white */
+}
+section form input[type="submit"] {
+    width: 100%; /* Set width of submit button to 100% */
+    padding: 10px; /* Add padding to submit button */
+    box-sizing: border-box; /* Include padding in width calculation */
+    margin-top: 10px; /* Add top margin */
+    font-size: 16px;
+    background-color: #277714; /* Match button background color to body */
+    border: 1px solid red; /* Add red border */
+    color: red; /* Set text color to white */
+}
+footer {
+    background-color:red;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;       
+}
+nav .button-link {
+    background-color: #277714;
+    border: 1px solid red;
+    color: red;
+    display: block;
+    width: 90px;
+    text-align: center;
+    padding: 3px;
+    text-decoration: none;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+nav .button-link:hover {
+    background-color: #278660; 
+}
+</style>
+</head>
+
+<body>
+<header>
+<h1> Search Data </h1>
+</header>
+
+<nav>
+     <a href="/pitchTracker/simpleFormInsert.html" class="button-link">Insert Data</a>
+</nav>
+
+<section>
+    <form action="SimpleFormSearch" method="POST">
+        <label for="keyword" style="font-size: 24px; color: red;">Search by First Name:</label> <br /> <!-- Modified label style -->
+        <input type="text" name="keyword"> <br />
+        <input type="submit" value="Search" />
+    </form>
+</section>
+
+<footer>
+Copyright Jaxon Jensen
+</footer>
+</body>
+</html>
