@@ -1,4 +1,3 @@
-
 /**
  * @file SimpleFormInsert.java
  */
@@ -56,16 +55,18 @@ public class SimpleFormInsert extends HttpServlet {
       // Set response content type
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
-      String title = "Insert Data to DB table";
+      String title = "Inserted Record to Table";
       String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + "transitional//en\">\n";
       out.println(docType + //
             "<html>\n" + //
             "<head><title>" + title + "</title></head>\n" + //
-            "<body bgcolor=\"#f0f0f0\">\n" + //
-            "<h2 align=\"center\">" + title + "</h2>\n" + //
-            "<ul>\n" + //
+            "<body bgcolor=\"#277714\">\n" + // Changed background color
+            "<header style=\"background-color:black; color:white; text-align:center; padding:30px; position: fixed; top: 0; left: 0; width: 100%; font-size: 30px; font face = Times New Roman;\"><b>Search Results</b></header>\n" + 
+            "<div style=\"margin-top: 100px;\">"); // Add margin-top to create space below the header
 
-            "  <li><b>First Name</b>: " + fName + "\n" + //
+      out.println("<ul style=\"color: yellow; font-size: 20px;\">\n"); // Changed text color
+
+      out.println("  <li><b>First Name</b>: " + fName + "\n" + //
             "  <li><b>Last Name</b>: " + lName + "\n" + //
             "  <li><b>Games Won</b>: " + gamesWon + "\n" + //
             "  <li><b>Games Played</b>: " + gamesPlayed + "\n" + //
@@ -76,7 +77,14 @@ public class SimpleFormInsert extends HttpServlet {
 
             "</ul>\n");
 
-      out.println("<a href=/pitchTracker/simpleFormSearch.html>Search Data</a> <br>");
+      out.println("<form action=\"/pitchTracker/simpleFormSearch.html\" method=\"get\"><button type=\"submit\" style=\"background-color: transparent; border: 1px solid red; color: red; font-size: 16px; padding: 10px;\">Search Data</button></form>"); 
+      
+      out.println("</div>");
+      
+      out.println("<footer style=\"background-color: red; color: white; clear:both; text-align:center; padding:5px; position: fixed; bottom: 0; left: 0; width: 100%;\">");
+      out.println("Copyright Jaxon Jensen");
+      out.println("</footer>");
+
       out.println("</body></html>");
    }
 

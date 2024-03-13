@@ -28,14 +28,23 @@ public class SimpleFormSearch extends HttpServlet {
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
       String title = "Database Result";
-      String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + //
-            "transitional//en\">\n"; //
-      out.println(docType + //
-            "<html>\n" + //
-            "<head><title>" + title + "</title></head>\n" + //
-            "<body bgcolor=\"#f0f0f0\">\n" + //
-            "<h1 align=\"center\">" + title + "</h1>\n");
 
+      out.println("<!DOCTYPE html>");
+      out.println("<html>");
+      out.println("<head>");
+      out.println("<title>" + title + "</title>");
+      out.println("<style>");
+      out.println("body { background-color: #277714; color: white; }");
+      out.println("table { width: 100%; text-align: center; border-color: yellow; background-color: #277714; margin-top: 100px; }");
+      out.println("table th { font-size: 20px; }");
+      out.println("table th, table td { color: white; }");
+      out.println(".button-container { margin-top: 20px; }"); // Add margin between table and button
+      out.println(".button-link button { font-size: 16px; padding: 5px 10px; font-size: 16px; background-color: #277714; border: 1px solid red; color: red; }");      
+      out.println("</style>");
+      out.println("</head>");
+      out.println("<body>");
+      out.println("<header style=\"background-color:black; color:white; text-align:center; padding:30px; position: fixed; top: 0; left: 0; width: 100%; font-size: 30px; font face = Times New Roman;\"><b>Record Inserted</b></header>"); // Modified header content
+      
       Connection connection = null;
       PreparedStatement preparedStatement = null;
       try {
@@ -47,36 +56,60 @@ public class SimpleFormSearch extends HttpServlet {
             preparedStatement = connection.prepareStatement(selectSQL);
          } else {
             String selectSQL = "SELECT * FROM pitch WHERE firstName LIKE ?";
-            String theUserName = keyword + "%";
+            String theUserName = keyword.toLowerCase() + "%";
             preparedStatement = connection.prepareStatement(selectSQL);
             preparedStatement.setString(1, theUserName);
          }
          ResultSet rs = preparedStatement.executeQuery();
 
-         while (rs.next()) {
-            int id = rs.getInt("id");
-            String fName = rs.getString("firstName").trim();
-            String lName = rs.getString("lastName").trim();
-            String gamesWon = rs.getString("gamesWon").trim();
-            String gamesPlayed = rs.getString("gamesPlayed").trim();
-            String averageBet = rs.getString("averageBet").trim();
-            String averagePts = rs.getString("averagePts").trim();
-            String averagePtsLost = rs.getString("averagePtsLost").trim();
-            String totalPts = rs.getString("totalPts").trim();
+         out.println("<table border='1'>");
+         out.println("<tr>");
+         out.println("<th>ID</th>");
+         out.println("<th>First Name</th>");
+         out.println("<th>Last Name</th>");
+         out.println("<th>Games Won</th>");
+         out.println("<th>Games Played</th>");
+         out.println("<th>Average Bet</th>");
+         out.println("<th>Average Points Won</th>");
+         out.println("<th>Average Points Lost</th>");
+         out.println("<th>Total Points Won</th>");
+         out.println("</tr>");
 
-            if (keyword.isEmpty() || fName.contains(keyword)) {
-               out.println("ID: " + id + ", ");
-               out.println("First Name: " + fName + "<br>");
-               out.println("Last Name: " + lName + "<br>");
-               out.println("Games Won: " + gamesWon + "<br>");
-               out.println("Games Played: " + gamesPlayed + "<br>");
-               out.println("Average Bet: " + averageBet + "<br>");
-               out.println("Average Points Won: " + averagePts + "<br>");
-               out.println("Average Points Lost: " + averagePtsLost + "<br>");
-               out.println("Total Points Won: " + totalPts + "<br>");
-            }
+         while (rs.next()) {
+             int id = rs.getInt("id");
+             String fName = rs.getString("firstName").trim();
+             String lName = rs.getString("lastName").trim();
+             String gamesWon = rs.getString("gamesWon").trim();
+             String gamesPlayed = rs.getString("gamesPlayed").trim();
+             String averageBet = rs.getString("averageBet").trim();
+             String averagePts = rs.getString("averagePts").trim();
+             String averagePtsLost = rs.getString("averagePtsLost").trim();
+             String totalPts = rs.getString("totalPts").trim();
+
+             if (keyword.isEmpty() || fName.toLowerCase().contains(keyword)) {
+                 out.println("<tr>");
+                 out.println("<td>" + id + "</td>");
+                 out.println("<td>" + fName + "</td>");
+                 out.println("<td>" + lName + "</td>");
+                 out.println("<td>" + gamesWon + "</td>");
+                 out.println("<td>" + gamesPlayed + "</td>");
+                 out.println("<td>" + averageBet + "</td>");
+                 out.println("<td>" + averagePts + "</td>");
+                 out.println("<td>" + averagePtsLost + "</td>");
+                 out.println("<td>" + totalPts + "</td>");
+                 out.println("</tr>");
+             }
          }
-         out.println("<a href=/pitchTracker/simpleFormSearch.html>Search Data</a> <br>");
+
+         out.println("</table>");
+         out.println("<div class=\"button-container\">");
+         out.println("<a href=\"/pitchTracker/simpleFormSearch.html\" class=\"button-link\"><button>Search Data</button></a>");
+         out.println("</div>");
+         
+         out.println("<footer style=\"background-color: red; color: white; clear:both; text-align:center; padding: 5px; left: 0; position: fixed; bottom: 0; width: 100%;\">");
+         out.println("Copyright Jaxon Jensen");
+         out.println("</footer>");
+         
          out.println("</body></html>");
          rs.close();
          preparedStatement.close();

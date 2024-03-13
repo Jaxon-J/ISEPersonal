@@ -1,31 +1,88 @@
 <html>
 <head>
 <style>
+body {
+    background-color: #277714; 
+    margin: 0; 
+    padding: 0; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 header {
     background-color:black;
     color:white;
     text-align:center;
-    padding:5px;	 
+    padding:5px;
 }
 nav {
     line-height:30px;
-    background-color:#eeeeee;
-    height:300px;
+    height:100px;
     width:100px;
     float:left;
-    padding:5px;	      
+    padding:5px;        
+}
+nav .button-link {
+    background-color: #277714;
+    border: 1px solid red;
+    color: red;
+    display: block;
+    width: 90px;
+    text-align: center;
+    padding: 3px;
+    text-decoration: none;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+nav .button-link:hover {
+    background-color: #278660; 
 }
 section {
-    width:350px;
-    float:left;
-    padding:10px;	 	 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px; /* Add top padding to the section */
+}
+section form {
+    width: 350px; /* Set width of the form */
+}
+section form label {
+    color: yellow; /* Set label color to yellow */
+    font-size: 20px; /* Increase font size */
+    margin-bottom: 10px; /* Add bottom margin to labels */
+    text-align: right; /* Align labels to the right */
+    width: 150px; /* Set width of labels */
+}
+section form input[type="text"] {
+    width: 100%; /* Set width of input to 100% */
+    padding: 10px; /* Add padding to input */
+    margin-bottom: 10px; /* Add bottom margin to input */
+    box-sizing: border-box; /* Include padding in width calculation */
+    background-color: #277714; /* Match input background color to body */
+    border: 1px solid yellow; /* Add yellow border */
+    color: white; /* Set text color to white */
+}
+section form input[type="submit"] {
+    width: 100%; /* Set width of submit button to 100% */
+    padding: 10px; /* Add padding to submit button */
+    box-sizing: border-box; /* Include padding in width calculation */
+    margin-top: 10px; /* Add top margin */
+    background-color: #277714; /* Match button background color to body */
+    border: 1px solid red; /* Add red border */
+    color: red;
+    font-size: 16px;
 }
 footer {
-    background-color:black;
+    background-color:red;
     color:white;
     clear:both;
     text-align:center;
-    padding:5px;	 	 
+    padding:5px;  
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 </style>
 </head>
@@ -36,30 +93,27 @@ footer {
 </header>
 
 <nav>
-<a href="/pitchTracker/simpleFormSearch.html">Search Data</a> <br>
+     <a href="/pitchTracker/simpleFormSearch.html" class="button-link">Search Data</a>
 </nav>
 
 <section>
-	<h1>User Input</h1>
-	
-	<form action="SimpleFormInsert" method="POST">
-	
-		First Name: <input type="text" name="fName"> <br />
-		Last Name: <input type="text" name="lName"> <br />
-		Games Won: <input type="text" name="gamesWon"> <br />
-		Games Played: <input type="text" name="gamesPlayed"> <br />
-		Average Bet: <input type="text" name="averageBet"> <br />
-		Average Points Won: <input type="text" name="averagePts"> <br />
-		Average Points Lost: <input type="text" name="averagePtsLost"> <br />
-		Total Points: <input type="text" name="totalPts"> <br />
-		
-		<input type="submit" value="Submit" />
-	</form>
-
+    
+    <form action="SimpleFormInsert" method="POST">
+        <label for="fName">First Name</label> <input type="text" id="fName" name="fName"> <br />
+        <label for="lName">Last Name</label> <input type="text" id="lName" name="lName"> <br />
+        <label for="gamesWon">Games Won</label> <input type="text" id="gamesWon" name="gamesWon"> <br />
+        <label for="gamesPlayed">Games Played</label> <input type="text" id="gamesPlayed" name="gamesPlayed"> <br />
+        <label for="averageBet">Average Bet</label> <input type="text" id="averageBet" name="averageBet"> <br />
+        <label for="averagePts">Average Points Won</label> <input type="text" id="averagePts" name="averagePts"> <br />
+        <label for="averagePtsLost">Average Points Lost</label> <input type="text" id="averagePtsLost" name="averagePtsLost"> <br />
+        <label for="totalPts">Total Points</label> <input type="text" id="totalPts" name="totalPts"> <br />
+        
+        <input type="submit" value="Submit" />
+    </form>
 </section>
 
 <footer>
-Copyright
+Copyright Jaxon Jensen
 </footer>
 </body>
 </html>
